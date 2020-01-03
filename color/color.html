@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="block"
+        style="width:200px;height:200px;text-align:center;line-height:200px;background-color:red;margin: auto;"></div>
+    <hr>
+    <div style="text-align:center; "><input type="button" value="正方形" onclick="trans('A')" />
+        <input type="button" value="圓形" onclick="trans('B')" /></div>
+    <p style="text-align:center; ">R<input type="range" min="0" max="255" step="1" id="rgbr"
+            onchange="color(this.value)"><br></p>
+    <p style="text-align:center; ">G<input type="range" min="0" max="255" step="1" id="rgbg"
+            onchange="color(this.value)"><br></p>
+    <p style="text-align:center; ">B<input type="range" min="0" max="255" step="1" id="rgbb"
+            onchange="color(this.value)"><br></p>
+    <!-- <input type="button" value="?" onclick="rand()" onmousedown="down()"  onmouseup="up()" onkeyup="enter()"> -->
+    <div style="text-align:center; "><button style="width: 150px;" onclick="rand()" onmousedown="down()"
+            onmouseup="up()">?</button></div><br>
+            <div style="text-align:center; "><button style="width: 150px;" onclick="rand()" onmousedown="add()"
+                onmouseup="up()">二十倍錄取率</button></div>
+          
+    <script>
+        
+        var zone = document.getElementById("block");
+        var clr = zone.style.backgroundColor; //red
+        r = document.getElementById('rgbr').value;
+        g = document.getElementById('rgbg').value;
+        b = document.getElementById('rgbb').value;
+        text = Math.floor(Math.random() * (8 - 1 + 1)) + 1;
+
+        function trans(re) {
+            switch (re) {
+                case "A":
+                    zone.style = (`margin: auto;width:200px;text-align:center;line-height:200px;height:200px;background-color:${clr}`)
+                    break;
+                case "B":
+                    zone.style = (`margin: auto;width:200px;text-align:center;line-height:200px;height:200px;background-color:${clr};border-radius: 50%`);
+                    break;
+
+            }
+        }
+
+        function color(re) {
+            r = document.getElementById('rgbr').value;
+            g = document.getElementById('rgbg').value;
+            b = document.getElementById('rgbb').value;
+            ss = zone.style.backgroundColor = (`rgb(${r},${g},${b})`);
+
+        }
+
+        function rand() {
+            rr = document.getElementById('rgbr').value = Math.floor(Math.random() * (255 - 0 + 1))
+            gg = document.getElementById('rgbg').value = Math.floor(Math.random() * (255 - 0 + 1))
+            bb = document.getElementById('rgbb').value = Math.floor(Math.random() * (255 - 0 + 1))
+            document.getElementById('block').innerHTML = "給我錄取";
+
+            return rgbrgb = zone.style.backgroundColor = (`rgb(${rr},${gg},${bb})`);
+
+        }
+        function gtn() {
+            time = new Date();
+            return time.getTime();
+        }
+
+        function down() {
+            var max = 90;
+            st = gtn();
+            t = setInterval(function () {
+                tend = gtn();
+                if (st - tend > 10) {
+                    clearInterval(t);
+
+                } else {
+                    rand();
+                    document.getElementById('block').innerHTML = "給我錄取";
+
+                }
+            }, max)
+        }
+        function add(){
+            var max =4.5;
+            st = gtn();
+            t = setInterval(function () {
+                tend = gtn();
+                if (st - tend > 10) {
+                    clearInterval(t);
+
+                } else {
+                    rand();
+                    document.getElementById('block').innerHTML = "給我錄取";
+
+                }
+            }, max)
+        }
+        function up() {
+            clearInterval(t);
+        }
+
+    </script>
+</body>
+
+</html>
